@@ -23,6 +23,12 @@ public class EmployeeServlet extends HttpServlet {
     public void init() {
         employeeDao = new EmployeeDao();
     }
+     protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+     response.getWriter().append("served at: ").append(request.getContextPath());
+         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/employeeregister.jsp");
+         dispatcher.forward(request,response);
+     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -49,6 +55,7 @@ public class EmployeeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("employeedetails.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/employeedetails.jsp");
+         dispatcher.forward(request,response);
     }
 }
